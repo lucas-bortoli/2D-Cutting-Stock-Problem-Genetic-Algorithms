@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cutting Stock Visualization</title>
+    <style>
+      .container {
+        position: relative;
+      }
+
+      .piece {
+        position: absolute;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="input">
+5421959
+        1400 500 -1 -1 1
+        900 900 1800 785 1
+        900 900 0 785 0
+        900 900 900 785 1
+        100 80 2700 785 1
+        210 470 1410 1808 1
+        123 678 1410 1685 1
+        785 2790 0 0 1
+        330 220 1080 1685 0
+        467 345 2088 1685 0
+        350 540 540 1685 1
+        350 540 0 1685 1</textarea
+    >
+    <div class="container" id="container"></div>
+    <script>
+      var container = document.getElementById("container");
+
+      var data = ``;
+
+      var lines = data.split("\n");
+      var sumArea = parseInt(lines.shift());
+
+      for (var i = 1; i < lines.length; i++) {
+        var values = lines[i]
+          .split(" ")
+          .filter((s) => s.length)
+          .map(Number);
+
+        var width = values[0];
+        var height = values[1];
+        var x = values[2];
+        var y = values[3];
+        var rotated = values[4];
+
+        console.log({ width, height, x, y, rotated });
+        var piece = document.createElement("div");
+        piece.className = "piece";
+        piece.style.width = rotated === 1 ? height + "px" : width + "px";
+        piece.style.height = rotated === 1 ? width + "px" : height + "px";
+        piece.style.left = x + "px";
+        piece.style.top = y + "px";
+        container.appendChild(piece);
+      }
+    </script>
+  </body>
+</html>
