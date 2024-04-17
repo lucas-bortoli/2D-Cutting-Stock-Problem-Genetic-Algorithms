@@ -28,12 +28,6 @@ std::vector<std::pair<int, int>> readInputFromStdin()
 
 int main(int argc, char **argv)
 {
-    if (argc >= 2 && std::string(argv[1]) == "-h")
-    {
-        std::cerr << "Usage: cat input_file.txt | ./solver" << std::endl;
-        exit(1);
-    }
-
     std::vector<std::pair<int, int>> inputPieces;
 
     auto figuresDimentions = readInputFromStdin(); // InputDataReader().fromFile("maleplyty.txt");
